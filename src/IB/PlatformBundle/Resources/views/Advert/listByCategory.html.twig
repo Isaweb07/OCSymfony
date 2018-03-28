@@ -1,0 +1,25 @@
+{# src/OC/PlatformBundle/Resources/view/Advert/listByCategory.html.twig #}
+
+{% extends "IBPlatformBundle::layout.html.twig" %}
+
+{% block title %}
+  Liste des annonces par catégorie - {{ parent() }}
+{% endblock %}
+
+{% block ibplatform_body %}
+
+  <h3> Les annonces des catégories
+  {% for category in listcategories %}
+    {{ category }}
+  {% endfor %}
+  </h3>
+  
+  <div class="well">
+    {% for advert in listadvert %}
+      <b>{{ advert.title }}</b>
+      <i>Par {{ advert.author }}, le {{ advert.date|date('d/m/Y') }}</i><br>
+    {% endfor %}
+
+  </div>
+
+{% endblock %}

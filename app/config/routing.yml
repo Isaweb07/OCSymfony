@@ -1,0 +1,7 @@
+ib_core:
+    resource: "@IBCoreBundle/Resources/config/routing.yml"
+    prefix:   /
+
+ib_platform:
+    resource: "@IBPlatformBundle/Resources/config/routing.yml"
+    prefix:   /platform

@@ -1,0 +1,55 @@
+ib_platform_bye:
+    path:     /bye-bye/{id}
+    defaults: { _controller: IBPlatformBundle:Advert:bye }
+
+ib_platform_home:
+    path:      /{page}/{nbperpage}
+    defaults:
+        _controller: IBPlatformBundle:Advert:index
+        page:        1
+        nbperpage:   5
+    requirements:
+        page: \d*
+        nbperpage: \d*
+    
+ib_platform_view:
+    path:      /advert/{id}
+    defaults:
+        _controller: IBPlatformBundle:Advert:view
+    requirements:
+        id: \d+
+    
+ib_platform_add:
+    path:      /add
+    defaults: { _controller: IBPlatformBundle:Advert:add }
+
+ib_platform_edit:
+    path:      /edit/{id}
+    defaults:
+        _controller: IBPlatformBundle:Advert:edit
+    requirements:
+        id: \d+
+
+ib_platform_delete:
+    path:      /delete/{id}
+    defaults:
+        _controller: IBPlatformBundle:Advert:delete
+    requirements:
+        id: \d+
+
+ib_platform_advertByCategories:
+    path:   /advertByCategories
+    defaults:
+        _controller: IBPlatformBundle:Advert:advertByCategories
+
+ib_platform_lastApplicationAndAdvert:
+    path: /lastApplicationAndAdvert/{limit}
+    defaults:
+        _controller: IBPlatformBundle:Advert:lastApplicationAndAdvert
+        limit:       3
+
+ib_platform_test:
+    path: /test
+    defaults:
+        _controller: IBPlatformBundle:Advert:test
+

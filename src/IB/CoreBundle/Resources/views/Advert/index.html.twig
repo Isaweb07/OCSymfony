@@ -1,0 +1,42 @@
+{# src/IB/CoreBundle/Resources/views/Advert/index.html.twig #}
+
+{% extends "IBCoreBundle::layout.html.twig" %}
+
+{% block title %}
+  Accueil - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+  {% if app.session.flashbag.has('info') %}
+    <div class="alert alert-danger">
+      {# On affiche tous les messages flash dont le nom est « info » #}
+      {% for message in app.session.flashbag.get('info') %}
+        <p><b>Message flash : </b> {{ message }}</p>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <h2>Voici les dernières annonces mises en ligne</h2>
+
+  {{ render(controller("IBPlatformBundle:Advert:menu", {'limit': 3})) }}
+
+  {#
+  <ul style="list-style-type: none;">
+    {% for advert in listAdverts %}
+      <li>
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        <a href="{{ path('ib_core_view', {'id': advert.id}) }}">
+          {{ advert.title }}
+        </a></span>
+        par {{ advert.author }},
+        le {{ advert.date|date('d/m/Y') }}
+      </li>
+    {% else %}
+      <li>Pas (encore !) d'annonces</li>
+    {% endfor %}
+  </ul>
+
+  #}
+
+{% endblock %}

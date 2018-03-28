@@ -1,0 +1,72 @@
+{# src/OC/PlatformBundle/Resources/view/Advert/view.html.twig #}
+
+{% extends "IBPlatformBundle::layout.html.twig" %}
+
+{% block title %}
+  Lecture d'une annonce - {{ parent() }}
+{% endblock %}
+
+{% block ibplatform_body %}
+
+  {# On vérifie qu'une image soit bien associée à l'annonce #}
+  {% if advert.image is not null %}
+    <img src="{{ advert.image.url }}" alt="{{ advert.image.alt }}"> 
+  {% endif %} 
+  <h2>{{ advert.title }}</h2>
+  <i>Par {{ advert.author }}, le {{ advert.date|date('d/m/Y') }}</i>
+
+  <div class="well">
+    {{ advert.content }}
+
+    <p>
+      <b>Cette annonce est parue dans les catégories suivantes : </b>
+    {% if not advert.categories.empty %}
+      {% for category in advert.categories %}
+        {{ category.name }}{% if not loop.last %}, {% endif %}
+      {% endfor %}
+    {% endif %}
+    </p>
+
+  
+  <div>
+    <b>Cette annonce requiert les compétences suivantes :</b>
+    {% if listAdvertSkills|length > 0 %}
+    <ul>
+      {% for advertSkill in listAdvertSkills %}
+        <li>{{ advertSkill.skill.name }} : niveau {{ advertSkill.level }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </div>
+
+  <hr>
+
+    {% if listApplications is not null %}
+      <h3>Voici la liste des candidatures pour cette annonce</h3>
+      <ul>
+      {% for application in listApplications %}
+        <li><b>Candidat : </b>{{ application.author }}
+        <br><b>&nbsp;Motivation :</b> {{ application.content }}
+        </li>
+      {% endfor %}
+      </ul>
+    {% endif %} 
+
+  </div>
+
+  <p>
+    <a href="{{ path('ib_platform_home') }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-chevron-left"></i>
+      Retour à la liste
+    </a>
+    <a href="{{ path('ib_platform_edit', {'id': advert.id}) }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-edit"></i>
+      Modifier l'annonce
+    </a>
+    <a href="{{ path('ib_platform_delete', {'id': advert.id}) }}" class="btn btn-danger">
+      <i class="glyphicon glyphicon-trash"></i>
+      Supprimer l'annonce
+    </a>
+  </p>
+
+{% endblock %}

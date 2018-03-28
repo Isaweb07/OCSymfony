@@ -1,0 +1,14 @@
+ib_core_homepage:
+    path:     /
+    defaults: { _controller: IBCoreBundle:Advert:index }
+
+ib_core_view:
+    path:      /advert/{id}
+    defaults:
+        _controller: IBCoreBundle:Advert:view
+    requirements:
+        id: \d+
+
+ib_core_contact:
+    path:     /contact
+    defaults: { _controller: IBCoreBundle:Advert:contact }

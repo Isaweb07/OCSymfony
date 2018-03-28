@@ -1,0 +1,22 @@
+services:
+#    ib_platform.example:
+#        class: IB\PlatformBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
+    ib_platform.antispam:
+        class: IB\PlatformBundle\Antispam\IBAntispam
+        arguments:
+            - "@mailer"
+            - %locale%
+            - 50
+
+    ib_platform.email.application_mailer:
+      class: IB\PlatformBundle\Email\ApplicationMailer
+      arguments:
+          - "@mailer"
+
+    ib_platform.doctrine_listener.application_creation:
+      class: IB\PlatformBundle\DoctrineListener\ApplicationCreationListener
+      arguments:
+          - "@ib_platform.email.application_mailer"
+      tags:
+          - { name: doctrine.event_listener, event: postPersist }
