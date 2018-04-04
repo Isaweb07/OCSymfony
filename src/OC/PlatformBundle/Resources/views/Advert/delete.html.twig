@@ -1,0 +1,20 @@
+{# src/OC/PlatformBundle/Resources/views/Advert/delete.html.twig #}
+
+{% extends "OCPlatformBundle::layout.html.twig" %}
+
+{% block body %}
+
+ <h2>Supression d'annonces</h2>
+
+  <h3>{{ titre }}</h3>
+
+   <p>
+   {{ paragraphe }}
+   <ul>
+   {% for annonce in listannonces %}
+  	 <li>{{ annonce }}</li>
+   {% endfor %}
+   </ul>
+  </p>
+
+{% endblock %}
